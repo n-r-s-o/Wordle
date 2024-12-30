@@ -83,38 +83,51 @@ def game():
 
         if round == 5:
             game_status = "lost"
+        else:
+            print(f"Round {round}.")
 
         print("Letters to guess from: ")
         for letter in alphabet:
             print(letter, end=" ")
         print()
 
-        guess = input("Guess a word: ").lower().strip()
+        while True:
+            guess = input("Guess a word: ").lower().strip()
 
-        if not guess.isascii():
-            print("Invalid character(s).")
+            if not guess.isalpha():
+                print("Invalid character(s).")
+                continue
 
-        elif len(guess) == 5:
-            print("Guessed word must be 5 letters.")
-        
-        elif guess in guesses:
-            print("You've already guessed that word.")
-
-        elif guess not in wordlist:
-            print("Word does not exist in the wordlist.")
+            elif len(guess) != 5:
+                print("Guessed word must be 5 letters.")
+                continue
             
-        else:
-            for guessed_letter in guess:
-                for correct_letter in facit.values():
-                    if guessed_letter == correct_letter:
-                        # do stuff
-                        pass
+            elif guess in guesses:
+                print("You've already guessed that word.")
+                continue
 
-            guesses.append(guess)
-            round += 1
+            elif guess + "\n" not in wordlist:
+                print("Word does not exist in the wordlist.")
+                continue
+
+            else:
+                break
+            
+        for guessed_letter in guess:
+
+            for correct_letter in facit.values():
+                if guessed_letter == correct_letter:
+                    # do stuff
+                    pass
+
+        guesses.append(guess)
+        round += 1
 
         if word_wip != facit:
             game_status = "won"
+
+    if game_status == "won":
+        "Congratulations! You guessed the word correctly."
 
 def choose_word():
     wordlist = open("5-letter-words.txt", "r")
