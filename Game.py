@@ -44,14 +44,19 @@ def menu_loop():
             print("Unrecognized command.")
 
 def game():
+    # Print instructions
+    print("Game instructions:")
+    print("You have 5 rounds to guess a 5-letter word. Each round, you may guess for a word, and if any letters of your guess exists in the correct answer, they will be marked out for you.")
+    print()
+
     word = choose_word()
 
     word_wip = {
-        1: "_ ",
-        2: "_ ",
-        3: "_ ",
-        4: "_ ",
-        5: "_ "
+        1: "_",
+        2: "_",
+        3: "_",
+        4: "_",
+        5: "_"
     }
 
     facit = {
@@ -76,15 +81,15 @@ def game():
     wordlist = open("5-letter-words.txt", "r").readlines()
 
     while game_status == "running":
-        # Print the word being worked on:
-        for letter in word_wip.values():
-            print(letter, end="")
-        print()
-
         if round == 5:
             game_status = "lost"
         else:
-            print(f"Round {round}.")
+            print(f"- ROUND {round} -")
+
+        # Print the word being worked on:
+        for letter in word_wip.values():
+            print(letter, end=" ")
+        print()
 
         print("Letters to guess from: ")
         for letter in alphabet:
@@ -112,15 +117,38 @@ def game():
 
             else:
                 break
-            
-        for guessed_letter in guess:
+        
+        guesses.append(guess)
 
+        # for each letter in the guessed word...
+            
+            # if it exists in the correct answer...
+                # if it's in the right postion...
+                    # add it in the same postion to the word that's a work in process
+                    
+                # if it's in the wrong position...
+                    # add it in the same postion to the word that's a work in process, but paranthesized
+                
+                # capitalize it in the alphabet
+
+            # if it doesn't exist in the correct answer...
+                # if it's in the alphabet...
+                    # remove it from the alphabet
+
+        letter_position = 1
+
+        while letter_position <= 5:
+            if guess[letter_position - 1] == facit[letter_position]:
+                pass
+
+
+        for guessed_letter in guess:
             for correct_letter in facit.values():
                 if guessed_letter == correct_letter:
                     # do stuff
                     pass
 
-        guesses.append(guess)
+
         round += 1
 
         if word_wip != facit:
