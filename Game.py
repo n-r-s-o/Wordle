@@ -50,7 +50,7 @@ def game():
     print("You have 5 rounds to guess a 5-letter word. Each round, you may guess for a new word")
     print("Example of a correct letter in the right position: a")
     print("Example of a correct letter in the wrong position: (a)")
-    #print("Example of a completely wrong letter: >a<")
+    # print("Example of a completely wrong letter: >a<")
     print("Good luck!")
     
     time.sleep(2)
