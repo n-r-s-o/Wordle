@@ -157,15 +157,15 @@ def game():
 
             # if it doesn't exist in the correct answer...
             else:
-                # Mark the letter as incorrect in the wip word:
-                # letter_position = guess.index(guessed_letter)
-                # key_position = letter_position + 1
-                # word_wip.update({key_position: ">" + guessed_letter + "<"})
-
                 # if it's in the alphabet...
                 if guessed_letter in alphabet:
                     # remove it from the alphabet
                     alphabet.remove(guessed_letter)     
+                
+                # Mark the letter as incorrect in the wip word:
+                # letter_position = guess.index(guessed_letter)
+                # key_position = letter_position + 1
+                # word_wip.update({key_position: ">" + guessed_letter + "<"})
 
         round += 1
 
