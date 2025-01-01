@@ -86,7 +86,8 @@ def game():
         "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
         ]
     
-    wordlist = open("5-letter-words.txt", "r").readlines()
+    # wordlist = open("5-letter-words.txt", "r").readlines()
+    wordlist = open("copilot-wordlist-edits", "r").readlines()  # Only edited up until "myths".
 
     while game_status == "running":
         if round > 5:
