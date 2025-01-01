@@ -1,11 +1,11 @@
-# Wordle
-
 import random
 import time
 
-# Create a text file of words that are 5 letters long
-# The function only needs to be run once
 def initialize_wordlist():
+    """Create a text file of words that are 5 letters long.
+    The function only needs to be run once.
+    """
+
     str_list = []
     
     with open("3000-common-words.txt", "r") as wordlist:
@@ -21,17 +21,19 @@ def initialize_wordlist():
 
     i = 0
 
-    # Write words from the list of strings until there's just one left
+    # Write words from the list of strings until there's just one left:
     while i < num_of_words - 1:
         new_wordlist.write(str_list[i] + "\n")
         i += 1
 
-    # Write the last word without a new line
+    # Write the last word without a new line:
     new_wordlist.write(str_list[i])
 
     new_wordlist.close()
 
 def menu_loop():
+    """Loop through menu of various commands based on user input."""
+
     while True:
         command = input("Start game of Wordle? y/n \n").lower()
 
@@ -45,7 +47,9 @@ def menu_loop():
             print("Unrecognized command.")
 
 def game():
-    # Print instructions
+    """Start playing Wordle."""
+
+    # Print instructions:
     print("\nGame instructions:")
     print("You have 5 rounds to guess a 5-letter word. Each round, you may guess for a new word")
     print("Example of a correct letter in the right position: a")
@@ -77,8 +81,10 @@ def game():
     guesses = []
     round = 1
     game_status = "running"
-    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
-                "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    alphabet = [
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
+        "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+        ]
     
     wordlist = open("5-letter-words.txt", "r").readlines()
 
@@ -133,33 +139,34 @@ def game():
 
         # For each letter in the guessed word...
         for guessed_letter in guess:
-            # if it exists in the correct answer...
+            # ...if it exists in the correct answer...
             if guessed_letter in facit.values():
                 letter_position = guess.index(guessed_letter)
                 key_position = letter_position + 1
 
-                # if it's in the right postion...
+                # ...if it's in the right postion...
                 if guessed_letter == facit[key_position]:
-                    # add it in the same postion to the word that's a work in process
+                    # ...add it in the same postion to the word that's a work in process.
                     word_wip.update({key_position: guessed_letter})
 
-                # if it's in the wrong position...
+                # ...if it's in the wrong position...
                 else:
-                    # add it in the same postion to the word that's a work in process, but paranthesized
+                    # ...add it in the same postion to the word that's a work in process, 
+                    # but paranthesized.
                     word_wip.update({key_position: "(" + guessed_letter + ")"})
 
-                # if it's in the alphabet...
+                # ...if it's in the alphabet...
                 if guessed_letter in alphabet:
-                    # mark it in the alphabet
+                    # ...mark it in the alphabet.
                     index = alphabet.index(guessed_letter)
                     alphabet.insert(index, "[" + guessed_letter + "]")
                     alphabet.remove(guessed_letter)
 
-            # if it doesn't exist in the correct answer...
+            # ...if it doesn't exist in the correct answer...
             else:
-                # if it's in the alphabet...
+                # ...if it's in the alphabet...
                 if guessed_letter in alphabet:
-                    # remove it from the alphabet
+                    # ...remove it from the alphabet.
                     alphabet.remove(guessed_letter)     
                 
                 # Mark the letter as incorrect in the wip word:
@@ -179,19 +186,17 @@ def game():
         # Print the correct answer:
         for letter in facit.values():
             print(letter, end=" ")
-        print()
-        print("Congratulations! You guessed the word correctly within 5 rounds.")
-        print()
-    
+        print("\nCongratulations! You guessed the word correctly within 5 rounds.\n")
+
     if game_status == "lost":
         # Print the word being worked on:
         for letter in word_wip.values():
             print(letter, end=" ")
-        print()
-        print("Game over! You ran out of guessing rounds. The correct answer was: " + word)
-        print()
+        print("\nGame over! You ran out of guessing rounds. The correct answer was: " + word + "\n")
 
 def choose_word():
+    """Choose a random word from the wordlist for the user to guess."""
+
     wordlist = open("5-letter-words.txt", "r")
     lines = wordlist.readlines()
     wordlist.close()
@@ -204,6 +209,8 @@ def choose_word():
     return word
 
 def main():
+    """Start the Wordle module."""
+
     # If you're running the game for the first time:
     # initialize_wordlist()
 
