@@ -8,7 +8,7 @@ def initialize_wordlist():
 
     str_list = []
     
-    with open("3000-common-words.txt", "r") as wordlist:
+    with open("gwicks-english-list.txt", "r") as wordlist:
         for word in wordlist:
             word = word.strip()
 
@@ -186,13 +186,13 @@ def game():
         # Print the correct answer:
         for letter in facit.values():
             print(letter, end=" ")
-        print("\nCongratulations! You guessed the word correctly within 5 rounds.\n")
+        print("\n\nCongratulations! You guessed the word correctly within 5 rounds.\n")
 
     if game_status == "lost":
         # Print the word being worked on:
         for letter in word_wip.values():
             print(letter, end=" ")
-        print("\nGame over! You ran out of guessing rounds. The correct answer was: " + word + "\n")
+        print("\n\nGame over! You ran out of guessing rounds. The correct answer was: " + word + "\n")
 
 def choose_word():
     """Choose a random word from the wordlist for the user to guess."""
