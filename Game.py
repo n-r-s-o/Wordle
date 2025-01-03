@@ -1,35 +1,7 @@
 import random
 import time
 
-def initialize_wordlist():
-    """Create a text file of words that are 5 letters long.
-    The function only needs to be run once.
-    """
-
-    str_list = []
-    
-    with open("gwicks-english-list.txt", "r") as wordlist:
-        for word in wordlist:
-            word = word.strip()
-
-            if len(word) == 5 and word[0].islower():
-                str_list.append(word)
-
-    new_wordlist = open("5-letter-words.txt", "w")
-
-    num_of_words = len(str_list)
-
-    i = 0
-
-    # Write words from the list of strings until there's just one left:
-    while i < num_of_words - 1:
-        new_wordlist.write(str_list[i] + "\n")
-        i += 1
-
-    # Write the last word without a new line:
-    new_wordlist.write(str_list[i])
-
-    new_wordlist.close()
+times_run = 0
 
 def menu_loop():
     """Loop through menu of various commands based on user input."""
@@ -49,18 +21,22 @@ def menu_loop():
 def game():
     """Start playing Wordle."""
 
-    # Print instructions:
-    print("\nGame instructions:")
-    print("You have 5 rounds to guess a 5-letter word. Each round, you may guess for a new word")
-    print("Example of a correct letter in the right position: a")
-    print("Example of a correct letter in the wrong position: (a)")
-    print("Good luck!")
+    global times_run
+    times_run += 1
+
+    if times_run == 1:
+        # Print instructions:
+        print("\nGame instructions:")
+        print("You have 5 rounds to guess a 5-letter word. Each round, you may guess for a new word")
+        print("Example of a correct letter in the right position: a")
+        print("Example of a correct letter in the wrong position: (a)")
+        print("Good luck!")
+        
+        time.sleep(1.2)
     
-    time.sleep(1.2)
     print()
 
     word = choose_word()
-
     word_wip = ["_"] * 5
     facit = []
     facit_letter_counts = {}
@@ -82,7 +58,7 @@ def game():
         "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
         ]
     
-    wordlist = open("copilot-wordlist-edits.txt", "r").readlines()  # Only edited up until "myths".
+    wordlist = open("wordlist.txt", "r").readlines()
 
     while game_status == "running":
         if round > 5:
@@ -189,14 +165,14 @@ def game():
             print(letter, end=" ", flush=True)
             time.sleep(0.2)
 
-        print(f"\n\nGame over! You ran out of guessing rounds. The correct answer was: {word}\n")
+        print(f"\n\nGame over! You've run out of guessing rounds. The correct answer was: {word}\n")
     
     time.sleep(0.4)
 
 def choose_word():
     """Choose a random word from the wordlist for the user to guess."""
 
-    wordlist = open("copilot-wordlist-edits.txt", "r")
+    wordlist = open("wordlist.txt", "r")
     lines = wordlist.readlines()
     wordlist.close()
 
@@ -209,9 +185,6 @@ def choose_word():
 
 def main():
     """Start the Wordle module."""
-
-    # If you're running the game for the first time:
-    # initialize_wordlist()
 
     menu_loop()
 
