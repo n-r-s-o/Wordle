@@ -60,8 +60,7 @@ def game():
     print()
 
     word = choose_word()
-    word = "album"
-    print(f"word: {word}")
+
     word_wip = ["_"] * 5
     facit = []
     facit_letter_counts = {}
@@ -188,7 +187,7 @@ def game():
 def choose_word():
     """Choose a random word from the wordlist for the user to guess."""
 
-    wordlist = open("5-letter-words.txt", "r")
+    wordlist = open("copilot-wordlist-edits.txt", "r")
     lines = wordlist.readlines()
     wordlist.close()
 
