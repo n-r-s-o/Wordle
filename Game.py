@@ -91,9 +91,16 @@ def game():
         else:
             print(f"- ROUND {round} -")
 
-        # Print the word being worked on:
-        for letter in word_wip:
-            print(letter, end=" ")
+        if round != 1:
+            # Print the word being worked on:
+            for letter in word_wip:
+                print(letter, end=" ", flush=True)
+                time.sleep(0.2)
+        else: 
+            # Print the word being worked on:
+            for letter in word_wip:
+                print(letter, end=" ")            
+
         print()
 
         word_wip = ["_"] * 5
@@ -169,16 +176,18 @@ def game():
         print()
 
     if game_status == "won":
-        # Print the correct answer:
-        for letter in facit:
-            print(letter, end=" ")
+        # Print the word being worked on:
+        for letter in word_wip:
+            print(letter, end=" ", flush=True)
+            time.sleep(0.2)
 
         print("\n\nCongratulations! You guessed the word correctly within 5 rounds.\n")
         
     if game_status == "lost":
         # Print the word being worked on:
         for letter in word_wip:
-            print(letter, end=" ")
+            print(letter, end=" ", flush=True)
+            time.sleep(0.2)
 
         print(f"\n\nGame over! You ran out of guessing rounds. The correct answer was: {word}\n")
     
