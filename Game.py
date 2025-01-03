@@ -54,29 +54,26 @@ def game():
     print("You have 5 rounds to guess a 5-letter word. Each round, you may guess for a new word")
     print("Example of a correct letter in the right position: a")
     print("Example of a correct letter in the wrong position: (a)")
-    # print("Example of a completely wrong letter: >a<")
     print("Good luck!")
     
-    time.sleep(2)
+    time.sleep(1.2)
     print()
 
     word = choose_word()
+    word = "album"
+    print(f"word: {word}")
+    word_wip = ["_"] * 5
+    facit = []
+    facit_letter_counts = {}
+    
+    for letter in word:
+        count = word.count(letter)
 
-    word_wip = {
-        1: "_",
-        2: "_",
-        3: "_",
-        4: "_",
-        5: "_"
-    }
+        if letter not in facit_letter_counts.keys():
+            facit_letter_counts.update({letter: count})
 
-    facit = {
-        1: word[0:1],
-        2: word[1:2],
-        3: word[2:3],
-        4: word[3:4],
-        5: word[4:5]
-    }
+    for letter in word:
+        facit.append(letter)
 
     guesses = []
     round = 1
@@ -86,8 +83,7 @@ def game():
         "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
         ]
     
-    # wordlist = open("5-letter-words.txt", "r").readlines()
-    wordlist = open("copilot-wordlist-edits", "r").readlines()  # Only edited up until "myths".
+    wordlist = open("copilot-wordlist-edits.txt", "r").readlines()  # Only edited up until "myths".
 
     while game_status == "running":
         if round > 5:
@@ -97,17 +93,11 @@ def game():
             print(f"- ROUND {round} -")
 
         # Print the word being worked on:
-        for letter in word_wip.values():
+        for letter in word_wip:
             print(letter, end=" ")
         print()
 
-        word_wip = {
-            1: "_",
-            2: "_",
-            3: "_",
-            4: "_",
-            5: "_"
-        }
+        word_wip = ["_"] * 5
 
         print("Letters to guess from: ")
         for letter in alphabet:
@@ -135,45 +125,41 @@ def game():
 
             else:
                 break
+
+        guessed_letters = []
+
+        for letter in guess:
+            guessed_letters.append(letter)
         
         guesses.append(guess)
 
-        # For each letter in the guessed word...
-        for guessed_letter in guess:
-            # ...if it exists in the correct answer...
-            if guessed_letter in facit.values():
-                letter_position = guess.index(guessed_letter)
-                key_position = letter_position + 1
+        correct_but_malplaced = {}
+        guess_position = 0
 
-                # ...if it's in the right postion...
-                if guessed_letter == facit[key_position]:
-                    # ...add it in the same postion to the word that's a work in process.
-                    word_wip.update({key_position: guessed_letter})
+        for guessed_letter in guessed_letters:
+            if guessed_letter in facit:
+                correct_positions = [index for index, value in enumerate(facit) if value == guessed_letter]
 
-                # ...if it's in the wrong position...
-                else:
-                    # ...add it in the same postion to the word that's a work in process, 
-                    # but paranthesized.
-                    word_wip.update({key_position: "(" + guessed_letter + ")"})
+                if guess_position in correct_positions:
+                    word_wip[guess_position] = guessed_letter
 
-                # ...if it's in the alphabet...
+                if guess_position not in correct_positions:
+                    correct_but_malplaced[guessed_letter] = guess_position
+
                 if guessed_letter in alphabet:
-                    # ...mark it in the alphabet.
                     index = alphabet.index(guessed_letter)
-                    alphabet.insert(index, "[" + guessed_letter + "]")
+                    alphabet.insert(index, f"[{guessed_letter}]")
                     alphabet.remove(guessed_letter)
 
-            # ...if it doesn't exist in the correct answer...
             else:
-                # ...if it's in the alphabet...
                 if guessed_letter in alphabet:
-                    # ...remove it from the alphabet.
                     alphabet.remove(guessed_letter)     
-                
-                # Mark the letter as incorrect in the wip word:
-                # letter_position = guess.index(guessed_letter)
-                # key_position = letter_position + 1
-                # word_wip.update({key_position: ">" + guessed_letter + "<"})
+
+            guess_position += 1
+        
+        for letter in correct_but_malplaced:
+            if word_wip.count(letter) < facit_letter_counts[letter]:
+                word_wip[correct_but_malplaced.get(letter)] = f"({letter})"
 
         round += 1
 
@@ -185,15 +171,19 @@ def game():
 
     if game_status == "won":
         # Print the correct answer:
-        for letter in facit.values():
+        for letter in facit:
             print(letter, end=" ")
-        print("\n\nCongratulations! You guessed the word correctly within 5 rounds.\n")
 
+        print("\n\nCongratulations! You guessed the word correctly within 5 rounds.\n")
+        
     if game_status == "lost":
         # Print the word being worked on:
-        for letter in word_wip.values():
+        for letter in word_wip:
             print(letter, end=" ")
-        print("\n\nGame over! You ran out of guessing rounds. The correct answer was: " + word + "\n")
+
+        print(f"\n\nGame over! You ran out of guessing rounds. The correct answer was: {word}\n")
+    
+    time.sleep(0.4)
 
 def choose_word():
     """Choose a random word from the wordlist for the user to guess."""
