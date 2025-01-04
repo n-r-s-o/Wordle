@@ -695,7 +695,6 @@ crabs
 crack
 craft
 crags
-craig
 cramp
 crams
 crane
@@ -1013,13 +1012,11 @@ egged
 egret
 eight
 eject
-eking
 elate
 elbow
 elder
 elect
 elegy
-elfin
 elite
 elope
 elude
@@ -1047,16 +1044,13 @@ equal
 equip
 erase
 erect
-erica
 erode
 error
 erupt
 essay
-ester
 ether
 ethic
 ethos
-ethyl
 euros
 evade
 evens
@@ -2603,7 +2597,6 @@ pleas
 pleat
 plebe
 plebs
-plena
 plied
 plies
 plink
@@ -2625,9 +2618,7 @@ poach
 pocks
 podge
 podgy
-podia
 poems
-poesy
 poets
 point
 poise
@@ -2640,7 +2631,6 @@ poles
 polio
 polka
 polls
-polyp
 ponce
 ponds
 pooch
@@ -2651,8 +2641,6 @@ poppy
 porch
 pored
 pores
-porgy
-porno
 ports
 posed
 poser
@@ -2811,11 +2799,8 @@ raise
 raked
 rakes
 rally
-ralph
-ramie
 ramps
 ranch
-rands
 randy
 range
 ranks
@@ -2888,13 +2873,10 @@ retro
 retry
 reuse
 revel
-revue
 rhine
 rhino
 rhyme
-rials
 ricer
-riche
 ricks
 rider
 rides
@@ -2907,10 +2889,6 @@ rigid
 rigor
 riled
 riles
-riley
-rills
-rimed
-rimes
 rinds
 rings
 rinks
@@ -2951,8 +2929,6 @@ roils
 roles
 rolls
 roman
-romps
-rondo
 roods
 roofs
 rooks
@@ -2965,8 +2941,6 @@ roper
 ropes
 ropey
 roses
-rosin
-rotas
 rotes
 rotor
 rouge
@@ -4113,7 +4087,6 @@ would
 wound
 woven
 wowed
-wrack
 wraps
 wrath
 wreak
