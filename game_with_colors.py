@@ -144,11 +144,11 @@ def game():
                         # Already has a color.
                 
             else:
-                word_wip[guess_position] = colored(guessed_letter, "grey")
+                word_wip[guess_position] = colored(guessed_letter, "dark_grey")
 
                 try:
                     index = alphabet.index(guessed_letter)
-                    alphabet[index] = colored(guessed_letter, "grey")
+                    alphabet[index] = colored(guessed_letter, "dark_grey")
                 except ValueError:
                     pass
                     # Already has a color.
@@ -162,7 +162,7 @@ def game():
                 if sum < facit_letter_counts[letter]:
                     word_wip[dictionary.get(letter)] = colored(letter, "yellow")
                 else:
-                    word_wip[dictionary.get(letter)] = colored(letter, "grey")
+                    word_wip[dictionary.get(letter)] = colored(letter, "dark_grey")
 
         round += 1
 
