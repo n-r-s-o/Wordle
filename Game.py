@@ -27,7 +27,7 @@ def game():
     if times_run == 1:
         # Print instructions:
         print("\nGame instructions:")
-        print("You have 5 rounds to guess a 5-letter word. Each round, you may guess for a new word")
+        print("You have 5 rounds to guess a 5-letter word. Each round, you may guess for a new word.")
         print("Example of a correct letter in the right position: a")
         print("Example of a correct letter in the wrong position: (a)")
         print("Good luck!")
@@ -37,6 +37,7 @@ def game():
     print()
 
     word = choose_word()
+    word = "wises"
     word_wip = ["_"] * 5
     facit = []
     facit_letter_counts = {}
