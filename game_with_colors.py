@@ -34,7 +34,7 @@ def game():
     if times_run == 1:
         # Print instructions:
         print("\nGame instructions:")
-        print("You have 5 rounds to guess a 5-letter word. Each round, you may guess for a new word.")
+        print("You have 6 rounds to guess a 5-letter word. Each round, you may guess for a new word.")
         print(f"Correct letters placed in the correct spot will be {colored("green", "green")}.")
         print(f"Correct letters placed in the wrong spot will be {colored("yellow", "yellow")}.")
         print("Good luck!")
@@ -68,7 +68,7 @@ def game():
     wordlist = open("wordlist.txt", "r").readlines()
 
     while game_status == "running":
-        if round > 5:
+        if round > 6:
             game_status = "lost"
             break
         else:
