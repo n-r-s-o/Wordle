@@ -37,7 +37,7 @@ def game():
     print()
 
     word = choose_word()
-    word = "wises"
+
     word_wip = ["_"] * 5
     facit = []
     facit_letter_counts = {}
