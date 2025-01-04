@@ -36,7 +36,7 @@ def game():
         print("\nGame instructions:")
         print("You have 5 rounds to guess a 5-letter word. Each round, you may guess for a new word.")
         print(f"Correct letters placed in the correct spot will be {colored("green", "green")}.")
-        print(f"Correct letters placed in wrong spot will be {colored("yellow", "yellow")}.")
+        print(f"Correct letters placed in the wrong spot will be {colored("yellow", "yellow")}.")
         print("Good luck!")
         
         time.sleep(1.2)
