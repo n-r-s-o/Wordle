@@ -1,12 +1,5 @@
 import random
-import time
-
-try:
-    from termcolor import colored
-except ModuleNotFoundError:
-    print("Apologies, you can't run this version if you don't have the module \"termcolor\" installed.")
-    print("Install it via pip and try running it again!")
-    quit()
+from time import sleep
 
 times_run = 0
 
@@ -35,11 +28,11 @@ def game():
         # Print instructions:
         print("\nGame instructions:")
         print("You have 6 rounds to guess a 5-letter word. Each round, you may guess for a new word.")
-        print(f"Correct letters placed in the correct spot will be {colored("green", "green")}.")
-        print(f"Correct letters placed in the wrong spot will be {colored("yellow", "yellow")}.")
+        print(f"Correct letters placed in the correct spot will be {color("green", "green")}.")
+        print(f"Correct letters placed in the wrong spot will be {color("yellow", "yellow")}.")
         print("Good luck!")
         
-        time.sleep(1.2)
+        sleep(1.2)
     
     print()
 
@@ -78,7 +71,7 @@ def game():
             # Print the word being worked on:
             for letter in word_wip:
                 print(letter, end=" ", flush=True)
-                time.sleep(0.2)
+                sleep(0.2)
         else: 
             # Print the word being worked on:
             for letter in word_wip:
@@ -130,7 +123,7 @@ def game():
                 correct_positions = [index for index, value in enumerate(facit) if value == guessed_letter]
 
                 if guess_position in correct_positions:
-                    word_wip[guess_position] = colored(guessed_letter, "green")
+                    word_wip[guess_position] = color(guessed_letter, "green")
 
                 if guess_position not in correct_positions:
                     dictionary = {guessed_letter: guess_position}
@@ -138,17 +131,17 @@ def game():
 
                     try:
                         index = alphabet.index(guessed_letter)
-                        alphabet[index] = colored(guessed_letter, "green")
+                        alphabet[index] = color(guessed_letter, "green")
                     except ValueError:
                         pass
                         # Already has a color.
                 
             else:
-                word_wip[guess_position] = colored(guessed_letter, "dark_grey")
+                word_wip[guess_position] = color(guessed_letter, "dark_grey")
 
                 try:
                     index = alphabet.index(guessed_letter)
-                    alphabet[index] = colored(guessed_letter, "dark_grey")
+                    alphabet[index] = color(guessed_letter, "dark_grey")
                 except ValueError:
                     pass
                     # Already has a color.
@@ -157,26 +150,26 @@ def game():
         
         for dictionary in correct_but_malplaced:
             for letter in dictionary:
-                sum = word_wip.count(colored(letter, "green")) + word_wip.count(colored(letter, "yellow"))
+                sum = word_wip.count(color(letter, "green")) + word_wip.count(color(letter, "yellow"))
 
                 if sum < facit_letter_counts[letter]:
-                    word_wip[dictionary.get(letter)] = colored(letter, "yellow")
+                    word_wip[dictionary.get(letter)] = color(letter, "yellow")
                 else:
-                    word_wip[dictionary.get(letter)] = colored(letter, "dark_grey")
+                    word_wip[dictionary.get(letter)] = color(letter, "dark_grey")
 
         round += 1
 
         if guessed_letters == facit:
             game_status = "won"
 
-        time.sleep(0.4)
+        sleep(0.4)
         print()
 
     if game_status == "won":
         # Print the word being worked on:
         for letter in word_wip:
             print(letter, end=" ", flush=True)
-            time.sleep(0.2)
+            sleep(0.2)
 
         print("\n\nCongratulations! You guessed the word correctly within 5 rounds.\n")
         
@@ -184,11 +177,11 @@ def game():
         # Print the word being worked on:
         for letter in word_wip:
             print(letter, end=" ", flush=True)
-            time.sleep(0.2)
+            sleep(0.2)
 
-        print(f"\n\nGame over! You've run out of guessing rounds. The correct answer was: {colored(word, "green")}\n")
+        print(f"\n\nGame over! You've run out of guessing rounds. The correct answer was: {color(word, "green")}\n")
     
-    time.sleep(0.4)
+    sleep(0.4)
 
 def choose_word():
     """Choose a random word from the wordlist for the user to guess."""
@@ -203,6 +196,18 @@ def choose_word():
     word = lines[word_num].strip()
 
     return word
+
+def color(string, color):
+    """Color a string of text with an ANSI escape code."""
+
+    if color == "green":
+        return f"\033[32m{string}\033[0m"
+
+    if color == "yellow":
+        return f"\033[33m{string}\033[0m"
+
+    if color == "dark_grey":
+        return f"\033[90m{string}\033[0m"
 
 def main():
     """Start the Wordle module."""
