@@ -8,9 +8,8 @@ This repository contains a copy of the popular word-guessing game Wordle, run en
 
 #### If you have git installed:
 1. Open any folder and open a terminal in it.
-2. Input: `git init`
-3. Input: `git clone https://github.com/n-r-s-o/Wordle.git`
-4. Run [game.py](https://github.com/n-r-s-o/Wordle/blob/main/Game.py) or [game_with_colors.py](https://github.com/n-r-s-o/Wordle/blob/main/game_with_colors.py), whichever you'd like to try. 
+2. Input: `git clone https://github.com/n-r-s-o/Wordle.git`
+3. Run [game.py](https://github.com/n-r-s-o/Wordle/blob/main/Game.py) or [game_with_colors.py](https://github.com/n-r-s-o/Wordle/blob/main/game_with_colors.py), whichever you'd like to try. 
 
 #### If you don't have git installed: 
 
