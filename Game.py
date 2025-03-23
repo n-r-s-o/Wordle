@@ -7,7 +7,7 @@ def menu_loop():
     """Loop through menu of various commands based on user input."""
 
     while True:
-        command = input("Start game of Wordle? y/n \n").lower()
+        command = input("Start new game of Wordle? y/n \n").lower()
 
         if command == "n":
             exit()
@@ -41,6 +41,8 @@ def game():
     facit = []
     facit_letter_counts = {}
     
+    # Populate facit_letter_counts with each correct letter 
+    # and the number of times it appears in the word.
     for letter in word:
         count = word.count(letter)
 

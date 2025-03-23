@@ -41,6 +41,8 @@ def game():
     facit = []
     facit_letter_counts = {}
     
+    # Populate facit_letter_counts with each correct letter 
+    # and the number of times it appears in the word.
     for letter in word:
         count = word.count(letter)
 
