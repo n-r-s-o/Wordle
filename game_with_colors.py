@@ -7,7 +7,7 @@ def menu_loop():
     """Loop through Wordle's menu of various commands based on user input."""
 
     while True:
-        command = input("Start game of Wordle? y/n \n").lower()
+        command = input("Start new game of Wordle? y/n \n").lower()
 
         if command == "n":
             exit()
