@@ -131,12 +131,12 @@ def game():
                     dictionary = {guessed_letter: guess_position}
                     correct_but_malplaced.append(dictionary)
 
-                    try:
-                        index = alphabet.index(guessed_letter)
-                        alphabet[index] = color(guessed_letter, "green")
-                    except ValueError:
-                        pass
-                        # Already has a color.
+                try:
+                    index = alphabet.index(guessed_letter)
+                    alphabet[index] = color(guessed_letter, "green")
+                except ValueError:
+                    pass
+                    # Already has a color.
                 
             else:
                 word_wip[guess_position] = color(guessed_letter, "dark_grey")
